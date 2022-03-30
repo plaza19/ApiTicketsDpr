@@ -77,5 +77,23 @@ namespace ApiTicketsDpr.Controllers
             this.repo.CreateUser(u);
             return Ok();
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route("/GetUser")]
+        public ActionResult<UsuarioTicket> GetUser()
+        {
+            UsuarioTicket u = JsonConvert.DeserializeObject<UsuarioTicket>(HttpContext.User.FindFirst("Userdata").Value);
+            return u;
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("/ProcessTicket")]
+        public ActionResult ProcessTicket()
+        {
+            return Ok();
+        }
+
     }
 }
